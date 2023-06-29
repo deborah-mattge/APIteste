@@ -7,7 +7,7 @@ const sequelize = new Squelize({
 
 async function testeDatabase(){
     try{
-        await sequelize.authenticate();
+        await sequelize.authenticate(); 
         console.log('banco conectado')
         
     }catch(error){

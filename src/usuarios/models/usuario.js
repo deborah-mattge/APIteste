@@ -12,15 +12,15 @@ Usuario.init ({
 
     },
     name:{
-        type: DataTypes, STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     password:{
-        type: DataTypes, STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     email:{
-        type: DataTypes, STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         unique:true
     }
@@ -31,6 +31,7 @@ Usuario.init ({
 Usuario.sync()
 .then(()=> {
     console.log('Usuario sincronizado');
+    
 
 })
 .catch((e)=>{
