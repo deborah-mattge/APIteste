@@ -23,12 +23,22 @@ Usuario.init ({
         type: DataTypes.STRING,
         allowNull: false,
         unique:true
-    }
+    },
+     cardPermissions:{
+         type: DataTypes.STRING,
+        
+       
+     },
+     propertiesPermissions:{
+         type: DataTypes.STRING,
+         
+        
+     }
 }, {
     sequelize: connection,
     modelName: 'users'
 }) 
-Usuario.sync()
+Usuario.sync(alter true)
 .then(()=> {
     console.log('Usuario sincronizado');
     
