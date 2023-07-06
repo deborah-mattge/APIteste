@@ -38,14 +38,14 @@ Usuario.init ({
     sequelize: connection,
     modelName: 'users'
 }) 
-Usuario.sync(alter true)
-.then(()=> {
-    console.log('Usuario sincronizado');
-    
-
-})
-.catch((e)=>{
-    console.log('Usuario não sincronizado',e)
-})
-
+Usuario.sync()
+  .then(() => {
+    return Usuario.sync({ alter: true });
+  })
+  .then(() => {
+    console.log('Usuário sincronizado com alterações aplicadas');
+  })
+  .catch((error) => {
+    console.error('Erro ao sincronizar usuário', error);
+  });
 module.exports=Usuario;
