@@ -1,41 +1,37 @@
 const { DataTypes, Model}=require('sequelize');
 const connection = require('../../database/connection');
  
-class Usuario extends Model{
+class cardPermissions extends Model{
 
 }
-Usuario.init ({
-    id: {
+cardPermissions.init ({
+    id_user: {
         type: DataTypes.STRING,
         allowNull: false,
+        foreingKey: true,
+        references:{
+               model: 'users',
+               key: "id"
+           },
         primaryKey:true
 
     },
-    name:{
+    permissions:{
         type: DataTypes.STRING,
         allowNull: false
-    },
-    password:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    email:{
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique:true
     }
 }, {
     sequelize: connection,
-    modelName: 'users'
+    modelName: 'cardPermissions'
 }) 
-Usuario.sync()
+cardPermissions.sync()
   .then(() => {
-    return Usuario.sync({ alter: true });
+    return cardPermissions.sync({ alter: true });
   })
   .then(() => {
-    console.log('Usuário sincronizado com alterações aplicadas');
+    console.log('Card sincronizado com alterações aplicadas');
   })
   .catch((error) => {
     console.error('Erro ao sincronizar usuário', error);
   });
-module.exports=Usuario;
+module.exports=cardPermissions;
